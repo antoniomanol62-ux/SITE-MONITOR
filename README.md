@@ -36,6 +36,6 @@ Os dados ficam num banco SQLite (`sites.db`). A coluna `url` é `UNIQUE`, então
 - [x] API mínima com FastAPI
 - [x] Banco SQLite e cadastro de sites (`POST /sites`)
 - [ ] Verificador em segundo plano com retry e alerta no Slack
-- [ ] Página web que consome a API
+- [x] Página web que consome a API
 - [ ] Testes com pytest e CI no GitHub Actions
 - [ ] Docker Compose
