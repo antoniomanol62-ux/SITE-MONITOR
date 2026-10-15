@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site Monitor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <h1>Site Monitor</h1>
+      <p class="sub">Sites cadastrados na sua API</p>
+    </div>
+    <div class="status" id="status" role="status">
+      <span class="ponto"></span>
+      <span id="status-texto">Verificando API...</span>
+    </div>
+  </header>
+
+  <main class="painel">
+    <section class="coluna-lista" aria-labelledby="titulo-lista">
+      <div class="barra">
+        <h2 id="titulo-lista">Sites <span class="contagem" id="contagem">0</span></h2>
+        <label class="busca">
+          <span class="sr-only">Buscar site</span>
+          <input type="search" id="busca" placeholder="Buscar por nome ou URL">
+        </label>
+      </div>
+      <ul class="lista" id="lista"></ul>
+      <p class="vazio" id="vazio" hidden></p>
+    </section>
+
+    <section class="coluna-form" aria-labelledby="titulo-form">
+      <h2 id="titulo-form">Cadastrar site</h2>
+      <form id="form" novalidate>
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" placeholder="Ex.: Portal da Brisanet" autocomplete="off">
+
+        <label for="url">URL</label>
+        <input type="url" id="url" name="url" placeholder="https://exemplo.com.br" autocomplete="off">
+
+        <p class="mensagem" id="mensagem" role="alert" hidden></p>
+        <button type="submit" id="botao">Cadastrar site</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
