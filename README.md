@@ -21,6 +21,17 @@ uvicorn main:app --reload
 
 A documentação interativa (Swagger) fica em `http://localhost:8000/docs`.
 
+### Página web
+
+Com a API rodando, abra outro terminal e rode:
+
+```bash
+cd frontend
+python -m http.server 5500 --bind 127.0.0.1
+```
+
+Depois acesse `http://127.0.0.1:5500`. A página lista os sites, busca por nome ou URL e cadastra sites novos.
+
 ## Endpoints
 
 - `GET /health`: verifica se a API está no ar
@@ -31,11 +42,21 @@ A documentação interativa (Swagger) fica em `http://localhost:8000/docs`.
 
 Os dados ficam num banco SQLite (`sites.db`). A coluna `url` é `UNIQUE`, então o banco recusa site repetido e a API responde 409. As consultas usam `?` para separar o comando SQL do dado do usuário, evitando SQL injection.
 
+## Como rodar os testes
+
+Com o ambiente virtual ativo, na pasta do projeto:
+
+```bash
+pytest
+```
+
+Os testes usam o TestClient do FastAPI e rodam sem o servidor no ar. Hoje cobrem o `/health`, o `GET /sites` e o erro 422 do `POST /sites` com corpo incompleto.
+
 ## Roadmap
 
 - [x] API mínima com FastAPI
 - [x] Banco SQLite e cadastro de sites (`POST /sites`)
 - [ ] Verificador em segundo plano com retry e alerta no Slack
 - [x] Página web que consome a API
-- [ ] Testes com pytest e CI no GitHub Actions
+- [ ] Testes com pytest e CI no GitHub Actions (pytest feito, CI pendente)
 - [ ] Docker Compose
