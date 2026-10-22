@@ -13,6 +13,8 @@ app.add_middleware(
     allow_headers=["Content-Type"],
 )
 
+DB_PATH = "sites.db"
+
 
 class SiteNovo(BaseModel):
     name: str
@@ -26,7 +28,7 @@ def health():
 
 @app.get("/sites")
 def listar_sites():
-    conexao = sqlite3.connect("sites.db")
+    conexao = sqlite3.connect(DB_PATH)
     cursor = conexao.cursor()
     cursor.execute("SELECT id, name, url FROM sites")
     linhas = cursor.fetchall()
@@ -40,7 +42,7 @@ def listar_sites():
 
 @app.post("/sites", status_code=201)
 def criar_site(site: SiteNovo):
-    conexao = sqlite3.connect("sites.db")
+    conexao = sqlite3.connect(DB_PATH)
     cursor = conexao.cursor()
     try:
         cursor.execute("INSERT INTO sites (name, url) VALUES (?, ?)", (site.name, site.url))
